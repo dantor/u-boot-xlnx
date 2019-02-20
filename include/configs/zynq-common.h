@@ -10,6 +10,13 @@
 #ifndef __CONFIG_ZYNQ_COMMON_H
 #define __CONFIG_ZYNQ_COMMON_H
 
+#define CONFIG_CPU_FREQ_HZ 650000000
+#define CONFIG_ZYNQ_PS_CLK_FREQ 50000000UL
+#define CONFIG_ZYNQ_SERIAL_BASEADDR0 0xE0000000
+#define CONFIG_ZYNQ_SERIAL_BAUDRATE0 115200
+#define CONFIG_ZYNQ_SERIAL_CLOCK0 100000000
+#define PHYS_SDRAM_1_SIZE (512 * 1024 * 1024)
+
 /* High Level configuration Options */
 #define CONFIG_ARMV7
 #define CONFIG_ZYNQ
@@ -289,8 +296,7 @@
 			"echo Copying Linux from SD to RAM... && " \
 			"fatload mmc 0 ${kernel_load_address} ${kernel_image} && " \
 			"fatload mmc 0 ${devicetree_load_address} ${devicetree_image} && " \
-			"fatload mmc 0 ${ramdisk_load_address} ${ramdisk_image} && " \
-			"bootm ${kernel_load_address} ${ramdisk_load_address} ${devicetree_load_address}; " \
+			"bootm ${kernel_load_address} - ${devicetree_load_address}; " \
 		"fi\0" \
 	"usbboot=if usb start; then " \
 			"run uenvboot; " \
